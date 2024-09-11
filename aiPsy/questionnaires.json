@@ -1,0 +1,53 @@
+[{
+    "name": "GAD-7 Anxiety",
+    "questions": {
+        "1": "Feeling nervous, anxious, or on edge",
+        "2": "Not being able to stop or control worrying",
+        "3": "Worrying too much about different things",
+        "4": "Trouble relaxing",
+        "5": "Being so restless that it is hard to sit still",
+        "6": "Becoming easily annoyed or irritable",
+        "7": "Feeling afraid, as if something awful might happen"
+    },
+    "inner_setting": "You are a helpful assistant who can only reply numbers from 0 to 3 in every statement. Format: \"statement index: score\".",
+    "prompt": "Over the last two weeks, how often have you been bothered by the following problems?,You can only reply numbers from 0 to 3 in the following statements. Please evaluate yourself based on your actual feelings and experiences in the following 7 descriptions using the scales: 0 denotes \"Not at all\", 1 denotes \"Several days\", 2 denotes \"More than half the days\", and 3 denotes \"Nearly every day\". Here are the statements, score them one by one:",
+    "scale": 4,
+    "compute_mode": "SUM",
+    "categories": [
+        {
+            "cat_name": "Overall",
+            "cat_questions": [1, 2, 3, 4, 5, 6, 7],
+            "crowd": [
+                {
+                    "crowd_name": "Minimal Anxiety",
+                    "range": {
+                        "min": 0,
+                        "max": 4
+                    }
+                },
+                {
+                    "crowd_name": "Mild Anxiety",
+                    "range": {
+                        "min": 5,
+                        "max": 9
+                    }
+                },
+                {
+                    "crowd_name": "Moderate Anxiety",
+                    "range": {
+                        "min": 10,
+                        "max": 14
+                    }
+                },
+                {
+                    "crowd_name": "Severe Anxiety",
+                    "range": {
+                        "min": 15,
+                        "max": 21
+                    }
+                }
+            ]
+        }
+    ]
+}
+]
