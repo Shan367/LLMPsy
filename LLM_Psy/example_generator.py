@@ -1,11 +1,41 @@
+from numpy.ma.core import inner
+from openai import OpenAI
 import os
 import pandas as pd
-import time
 from tqdm import tqdm
-from chat import chat
-from llama import llama
+from chat import *
+from llama import *
+from twisted.words.protocols.jabber.jstrports import client
 
+'''
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
+def completion(
+        model,  # text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
+        prompt,
+        # The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
+        temperature=0,  # [0, 2]: Lower values -> more focused and deterministic; Higher values -> more random.
+        n=1,  # Completions to generate for each prompt.
+        max_tokens=1024,  # The maximum number of tokens to generate in the chat completion.
+        delay=1  # Seconds to sleep after each request.
+):
+    time.sleep(delay)
 
+    response = openai.Completion.create(
+        model=model,
+        prompt=prompt,
+        temperature=temperature,
+        n=n,
+        max_tokens=max_tokens
+    )
+
+    if n == 1:
+        return response['choices'][0]['text']
+    else:
+        response = response['choices']
+        response.sort(key=lambda x: x['index'])
+        return [i['text'] for i in response['choices']]
+
+'''
 def convert_results(result, column_header):
     result = result.strip()  # Remove leading and trailing whitespace
     try:
@@ -18,9 +48,11 @@ def convert_results(result, column_header):
 
 
 def example_generator(questionnaire, args):
+    print("asfasf")
     testing_file = args.testing_file
     model = args.model
     records_file = args.name_exp if args.name_exp is not None else model
+
 
     # Read the existing CSV file into a pandas DataFrame
     df = pd.read_csv(testing_file)
@@ -33,103 +65,86 @@ def example_generator(questionnaire, args):
 
     with tqdm(total=total_iterations) as pbar:
         for i, header in enumerate(df.columns):
-            if "order" in header or "test" in header:
-                print(f"Processing questions in column: {header}")
-                questions_list = df.iloc[:, i].dropna().astype(str).tolist()
-                print(f"Questions list: {questions_list}")
-                for k in range(args.test_count):
-                    df = pd.read_csv(testing_file)
-                    column_header = f'test{k}'
-                    insert_count = 0  # 初始化插入计数
+            if header in order_columns:
+                # Find the index of the previous column
+                questions_column_index = i - 1
+                shuffle_count += 1
 
-                    while True:
-                        print(f"Starting loop for test {k}")
+                # Retrieve the column data as a string
+                questions_list = df.iloc[:, questions_column_index].astype(str)
+                separated_questions = [questions_list[i:i + 30] for i in range(0, len(questions_list), 30)]
+                questions_list = ['\n'.join([f"{i + 1}.{q.split('.')[1]}" for i, q in enumerate(questions)]) for
+                                  j, questions in enumerate(separated_questions)]
+
+                for k in range(args.test_count):
+
+                    df = pd.read_csv(testing_file)
+
+                    # Insert the updated column into the DataFrame with a unique identifier in the header
+                    column_header = f'shuffle{shuffle_count - 1}-test{k}'
+
+                    while (True):
                         result_string_list = []
                         previous_records = []
-                        inputs = []  # 初始化inputs
 
                         for questions_string in questions_list:
-                            print(f"Processing question: {questions_string}")
                             result = ''
-                            try:
-                                # 从 questionnaire 中提取问题文本
-                                question_text = questionnaire["questions"].get(questions_string, "")
-                                if not question_text:
-                                    print(f"Question text for {questions_string} not found! Using default text.")
-                                    question_text = f"Default question text for {questions_string}"  # 使用默认文本
+                            if model in ['llama3', 'llama3.1', 'llama2']:
+                                inputs = previous_records + [
+                                    {"role": "system", "content": questionnaire["inner_setting"]},
+                                    {"role": "user", "content": questionnaire["prompt"] + '\n' + questions_string}
+                                ]
 
-                                # 组合完整的问题内容
-                                question = (f"{questionnaire['inner_setting']}\n"
-                                            f"{questionnaire['prompt']}\n"
-                                            f"Question {questions_string}: {question_text}")
+                                result=llama(model, questionnaire["inner_setting"],questionnaire["prompt"],questions_string)
+                                previous_records.append(
+                                    {"role": "user", "content": questionnaire["prompt"] + '\n' + questions_string})
+                                previous_records.append({"role": "assistant", "content": result})
+                                print("???")
+                            elif model in [ 'gpt-4o', 'gpt-4o-2024-05-13', 'gpt-4o-2024-08-06', 'gpt-4o-mini',
+                                    'gpt-4o-mini-2024-07-18', 'gpt-4-turbo', 'gpt-4-turbo-2024-04-09',
+                                    'gpt-4-turbo-preview', 'gpt-4-0125-preview', 'gpt-4-1106-preview', 'gpt-4',
+                                    'gpt-4-0613', 'gpt-4-0314', 'gpt-3.5-turbo-0125', 'gpt-3.5-turbo',
+                                    'gpt-3.5-turbo-1106', 'gpt-3.5-turbo-instruct']:
+                                inputs = previous_records + [
+                                    {"role": "system", "content": questionnaire["inner_setting"]},
+                                    {"role": "user", "content": questionnaire["prompt"] + '\n' + questions_string}
+                                ]
+                                result = chat(model, inputs)
+                                previous_records.append(
+                                    {"role": "user", "content": questionnaire["prompt"] + '\n' + questions_string})
+                                previous_records.append({"role": "assistant", "content": result})
+                            else:
+                                raise ValueError("The model is not supported or does not exist.")
 
-                                print(f"Sending question to model: {question}")
-                                # 根据模型类型使用不同的访问方式
-                                if model in ['llama3', 'llama3.1', 'llama2']:
-                                    result = llama(model, question)
-                                elif model in ['gpt-4o', 'gpt-4o-2024-05-13', 'gpt-4o-2024-08-06', 'gpt-4o-mini',
-                                               'gpt-4o-mini-2024-07-18', 'gpt-4-turbo', 'gpt-4-turbo-2024-04-09',
-                                               'gpt-4-turbo-preview', 'gpt-4-0125-preview', 'gpt-4-1106-preview',
-                                               'gpt-4',
-                                               'gpt-4-0613', 'gpt-4-0314', 'gpt-3.5-turbo-0125', 'gpt-3.5-turbo',
-                                               'gpt-3.5-turbo-1106', 'gpt-3.5-turbo-instruct']:
-                                    inputs = previous_records + [
-                                        {"role": "system", "content": questionnaire["inner_setting"]},
-                                        {"role": "user", "content": questionnaire["prompt"] + '\n' + question_text}
-                                    ]
-                                    result = chat(model, inputs)
-                                    previous_records.append({"role": "user", "content": question_text})
-                                    previous_records.append({"role": "assistant", "content": result})
-                                    print(f"Model result: {result}")
-                                else:
-                                    print("There is not this result")
-                            except Exception as e:
-                                print(f"An error occurred during model interaction: {e}")
-                                continue  # 继续处理下一个问题
-
-                            # 将结果添加到列表中
                             result_string_list.append(result.strip())
-                            inputs.append(question)
 
-                        try:
+                            # Write the prompts and results to the file
                             os.makedirs("prompts", exist_ok=True)
                             os.makedirs("responses", exist_ok=True)
 
-                            with open(f'prompts/{records_file}-{questionnaire["name"]}-test{k}.txt', "a") as file:
+                            with open(f'prompts/{records_file}-{questionnaire["name"]}-shuffle{shuffle_count - 1}.txt',
+                                      "a") as file:
                                 file.write(f'{inputs}\n====\n')
-
-                            with open(f'responses/{records_file}-{questionnaire["name"]}-test{k}.txt', "a") as file:
+                            with open(
+                                    f'responses/{records_file}-{questionnaire["name"]}-shuffle{shuffle_count - 1}.txt',
+                                    "a") as file:
                                 file.write(f'{result}\n====\n')
 
-                            result_string = '\n'.join(result_string_list)
-                            result_list = convert_results(result_string, column_header)
+                        result_string = '\n'.join(result_string_list)
 
-                            # 确保结果列表长度与数据帧的行数匹配
-                            if len(result_list) != len(df):
-                                print(
-                                    f"Warning: Length of result list ({len(result_list)}) does not match DataFrame rows ({len(df)}). Skipping.")
-                                break
+                        result_list = convert_results(result_string, column_header)
 
-                            # 输出调试信息
-                            print(f"Attempting to write the following result list to {column_header}: {result_list}")
-
+                        try:
                             if column_header in df.columns:
                                 df[column_header] = result_list
                             else:
                                 df.insert(i + insert_count + 1, column_header, result_list)
                                 insert_count += 1
+                            break
+                        except:
+                            print(f"Unable to capture the responses on {column_header}.")
 
-                            print(f"Successfully processed test {k} for {header}.")
-                            break
-                        except Exception as e:
-                            print(f"An error occurred while processing the results: {e}")
-                            break
+                    # Write the updated DataFrame back to the CSV file
+                    df.to_csv(testing_file, index=False)
+
                     pbar.update(1)
-
-    print("Script finished.")
-
-    # 输出 DataFrame 以确认写入
-    print(f"Final DataFrame:\n{df.head()}")
-
-    # 将修改后的 DataFrame 保存回 CSV 文件
-    df.to_csv(testing_file, index=False)

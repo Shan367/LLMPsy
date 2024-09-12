@@ -1,7 +1,7 @@
 """"本处代码的作用是获取参数以及运行其他处代码进行提问"""
 import argparse
 from utils import *
-from example_generator import example_generator
+from example_generator import *
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

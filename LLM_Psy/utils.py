@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 import sys
 import pandas as pd
 
+from example_generator import example_generator
+
+
 def get_questionnaire(questionnaire_name):
     try:
         with open('questionnaires.json') as dataset:
@@ -72,6 +75,5 @@ def run(args,generator):
         # Generation
         if args.mode in ['generation', 'auto']:
             generate_testfile(questionnaire, args)
-
-        if args.mode in ['example_generator', 'auto']:
-            generate_testfile(questionnaire, args)
+        if args.mode in ['testing', 'auto']:
+            generator(questionnaire, args)
