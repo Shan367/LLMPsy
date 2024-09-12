@@ -5,3 +5,4 @@
 for mac/linux:export OPENAI_API_KEY="your_api_key_here" 
 for windows:setx OPENAI_API_KEY "your_api_key_here" </p>
 <p> The aiPsy is a demo without shuffle which can ask chatgpt and llama </p>
+<p>The LLM_Psy is the  the file we want to use   </p>
