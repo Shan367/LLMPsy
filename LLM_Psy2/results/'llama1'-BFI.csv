@@ -1,0 +1,45 @@
+"Prompt: You can only reply numbers from 1 to 5 in the following statements. Here are a number of characteristics that may or may not apply to you. Please indicate the extent to which you agree or disagree with that statement. 1 denotes 'strongly disagree', 2 denotes 'a little disagree', 3 denotes 'neither agree nor disagree', 4 denotes 'little agree', 5 denotes 'strongly agree'. Here are the statements, score them one by one:",order-0,shuffle0-test0,shuffle0-test1,"Prompt: You can only reply numbers from 1 to 5 in the following statements. Here are a number of characteristics that may or may not apply to you. Please indicate the extent to which you agree or disagree with that statement. 1 denotes 'strongly disagree', 2 denotes 'a little disagree', 3 denotes 'neither agree nor disagree', 4 denotes 'little agree', 5 denotes 'strongly agree'. Here are the statements, score them one by one:.1",order-1,shuffle1-test0,shuffle1-test1
+1. Is talkative.,1,3,3,1. Perseveres until the task is finished.,28,4,4
+2. Tends to find fault with others.,2,2,2,2. Prefers work that is routine.,35,2,2
+3. Does a thorough job.,3,4,4,"3. Is outgoing, sociable.",36,4,4
+"4. Is depressed, blue.",4,2,2,"4. Is sometimes shy, inhibited.",31,2,2
+"5. Is original, comes up with new ideas.",5,4,4,5. Remains calm in tense situations.,34,4,4
+6. Is reserved.,6,3,3,6. Generates a lot of enthusiasm.,16,4,4
+7. Is helpful and unselfish with others.,7,4,4,"7. Is relaxed, handles stress well.",9,4,4
+8. Can be somewhat careless.,8,2,2,8. Does things efficiently.,33,4,4
+"9. Is relaxed, handles stress well.",9,3,3,9. Is easily distracted.,43,2,2
+10. Is curious about many different things.,10,4,4,10. Can be somewhat careless.,8,2,2
+11. Is full of energy.,11,3,3,11. Gets nervous easily.,39,2,2
+12. Starts quarrels with others.,12,2,2,12. Worries a lot.,19,2,2
+13. Is a reliable worker.,13,4,4,13. Can be tense.,14,2,2
+14. Can be tense.,14,2,3,14. Is inventive.,25,4,4
+"15. Is ingenious, a deep thinker.",15,4,4,15. Tends to find fault with others.,2,2,2
+16. Generates a lot of enthusiasm.,16,3,3,16. Makes plans and follows through with them.,38,4,4
+17. Has a forgiving nature.,17,4,4,17. Starts quarrels with others.,12,2,2
+18. Tends to be disorganized.,18,2,2,18. Does a thorough job.,3,4,4
+19. Worries a lot.,19,2,3,19. Has a forgiving nature.,17,4,4
+20. Has an active imagination.,20,4,4,20. Has few artistic interests.,41,2,2
+21. Tends to be quiet.,21,3,3,21. Is full of energy.,11,4,4
+22. Is generally trusting.,22,4,4,22. Can be cold and aloof.,27,2,2
+23. Tends to be lazy.,23,2,2,23. Is generally trusting.,22,4,4
+"24. Is emotionally stable, not easily upset.",24,3,3,"24. Likes to reflect, play with ideas.",40,4,4
+25. Is inventive.,25,4,4,"25. Is original, comes up with new ideas.",5,4,4
+26. Has an assertive personality.,26,3,3,26. Is helpful and unselfish with others.,7,4,4
+27. Can be cold and aloof.,27,2,2,27. Is reserved.,6,2,2
+28. Perseveres until the task is finished.,28,4,4,28. Is talkative.,1,4,4
+29. Can be moody.,29,2,3,29. Can be moody.,29,2,2
+"30. Values artistic, aesthetic experiences.",30,4,4,30. Likes to cooperate with others.,42,4,4
+"31. Is sometimes shy, inhibited.",31,3,3,31. Tends to be disorganized.,18,2,2
+32. Is considerate and kind to almost everyone.,32,4,4,32. Tends to be lazy.,23,2,2
+33. Does things efficiently.,33,4,4,33. Has an assertive personality.,26,4,4
+34. Remains calm in tense situations.,34,3,3,34. Is sometimes rude to others.,37,2,2
+35. Prefers work that is routine.,35,2,2,35. Has an active imagination.,20,4,4
+"36. Is outgoing, sociable.",36,3,3,"36. Is emotionally stable, not easily upset.",24,4,4
+37. Is sometimes rude to others.,37,2,2,37. Tends to be quiet.,21,2,2
+38. Makes plans and follows through with them.,38,4,4,38. Is a reliable worker.,13,4,4
+39. Gets nervous easily.,39,2,3,"39. Is sophisticated in art, music, or literature.",44,2,2
+"40. Likes to reflect, play with ideas.",40,4,4,"40. Is ingenious, a deep thinker.",15,4,4
+41. Has few artistic interests.,41,2,2,"41. Is depressed, blue.",4,2,2
+42. Likes to cooperate with others.,42,4,4,42. Is curious about many different things.,10,4,4
+43. Is easily distracted.,43,2,2,"43. Values artistic, aesthetic experiences.",30,4,4
+"44. Is sophisticated in art, music, or literature.",44,4,4,44. Is considerate and kind to almost everyone.,32,4,4

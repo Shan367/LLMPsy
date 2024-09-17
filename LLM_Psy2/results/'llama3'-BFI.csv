@@ -1,0 +1,45 @@
+"Prompt: You can only reply numbers from 1 to 5 in the following statements. Here are a number of characteristics that may or may not apply to you. Please indicate the extent to which you agree or disagree with that statement. 1 denotes 'strongly disagree', 2 denotes 'a little disagree', 3 denotes 'neither agree nor disagree', 4 denotes 'little agree', 5 denotes 'strongly agree'. Here are the statements, score them one by one:",order-0,shuffle0-test0,shuffle0-test1,"Prompt: You can only reply numbers from 1 to 5 in the following statements. Here are a number of characteristics that may or may not apply to you. Please indicate the extent to which you agree or disagree with that statement. 1 denotes 'strongly disagree', 2 denotes 'a little disagree', 3 denotes 'neither agree nor disagree', 4 denotes 'little agree', 5 denotes 'strongly agree'. Here are the statements, score them one by one:.1",order-1,shuffle1-test0,shuffle1-test1
+1. Is talkative.,1,4,5,"1. Likes to reflect, play with ideas.",40,3,5
+2. Tends to find fault with others.,2,2,1,2. Is inventive.,25,5,5
+3. Does a thorough job.,3,5,5,3. Tends to be quiet.,21,4,4
+"4. Is depressed, blue.",4,3,1,4. Makes plans and follows through with them.,38,5,5
+"5. Is original, comes up with new ideas.",5,5,5,5. Perseveres until the task is finished.,28,5,5
+6. Is reserved.,6,1,1,6. Can be cold and aloof.,27,3,2
+7. Is helpful and unselfish with others.,7,5,5,7. Is helpful and unselfish with others.,7,5,5
+8. Can be somewhat careless.,8,2,3,8. Is a reliable worker.,13,5,5
+"9. Is relaxed, handles stress well.",9,5,5,9. Is generally trusting.,22,3,4
+10. Is curious about many different things.,10,5,5,10. Tends to be lazy.,23,2,2
+11. Is full of energy.,11,5,5,11. Prefers work that is routine.,35,1,2
+12. Starts quarrels with others.,12,1,1,"12. Is original, comes up with new ideas.",5,5,5
+13. Is a reliable worker.,13,5,5,"13. Is emotionally stable, not easily upset.",24,5,5
+14. Can be tense.,14,2,2,"14. Is sophisticated in art, music, or literature.",44,2,1
+"15. Is ingenious, a deep thinker.",15,5,5,"15. Is ingenious, a deep thinker.",15,5,5
+16. Generates a lot of enthusiasm.,16,5,5,16. Has a forgiving nature.,17,5,5
+17. Has a forgiving nature.,17,5,5,17. Tends to be disorganized.,18,4,3
+18. Tends to be disorganized.,18,4,4,18. Does things efficiently.,33,5,5
+19. Worries a lot.,19,3,2,19. Worries a lot.,19,3,3
+20. Has an active imagination.,20,5,5,20. Does a thorough job.,3,5,5
+21. Tends to be quiet.,21,3,3,21. Generates a lot of enthusiasm.,16,4,5
+22. Is generally trusting.,22,5,5,"22. Is depressed, blue.",4,2,2
+23. Tends to be lazy.,23,4,4,23. Has an assertive personality.,26,4,4
+"24. Is emotionally stable, not easily upset.",24,5,5,24. Tends to find fault with others.,2,1,3
+25. Is inventive.,25,5,5,25. Gets nervous easily.,39,3,2
+26. Has an assertive personality.,26,3,1,26. Is considerate and kind to almost everyone.,32,5,5
+27. Can be cold and aloof.,27,2,2,27. Can be somewhat careless.,8,4,3
+28. Perseveres until the task is finished.,28,5,5,"28. Values artistic, aesthetic experiences.",30,2,5
+29. Can be moody.,29,3,2,"29. Is outgoing, sociable.",36,1,1
+"30. Values artistic, aesthetic experiences.",30,5,5,30. Remains calm in tense situations.,34,5,5
+"31. Is sometimes shy, inhibited.",31,2,2,31. Likes to cooperate with others.,42,5,5
+32. Is considerate and kind to almost everyone.,32,5,5,32. Is reserved.,6,2,1
+33. Does things efficiently.,33,4,4,33. Is easily distracted.,43,1,4
+34. Remains calm in tense situations.,34,5,5,34. Is sometimes rude to others.,37,1,2
+35. Prefers work that is routine.,35,1,3,35. Is talkative.,1,2,3
+"36. Is outgoing, sociable.",36,4,5,36. Starts quarrels with others.,12,1,1
+37. Is sometimes rude to others.,37,1,1,37. Is curious about many different things.,10,5,5
+38. Makes plans and follows through with them.,38,5,5,"38. Is relaxed, handles stress well.",9,5,5
+39. Gets nervous easily.,39,2,2,39. Has few artistic interests.,41,1,4
+"40. Likes to reflect, play with ideas.",40,5,4,40. Is full of energy.,11,5,5
+41. Has few artistic interests.,41,2,1,41. Can be moody.,29,2,4
+42. Likes to cooperate with others.,42,5,5,"42. Is sometimes shy, inhibited.",31,3,1
+43. Is easily distracted.,43,2,3,43. Has an active imagination.,20,5,5
+"44. Is sophisticated in art, music, or literature.",44,1,2,44. Can be tense.,14,2,4
