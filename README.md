@@ -8,3 +8,4 @@ for windows:setx OPENAI_API_KEY "your_api_key_here" </p>
 <p>The LLM_Psy is the  the file we want to use   </p>
 
 <P>New ZIP file can analysis the questionnaire in json,and giving you some results</P>
+<p>我们也能使用千义通问去进行测试，他的用法和gpt一样都是通过环境变量来设置api-key的 </p>
